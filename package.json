@@ -1,0 +1,22 @@
+{
+  "name": "phinder-technologies",
+  "version": "1.0.0",
+  "description": "Landing page for Phinder Technologies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rapidmotion134/phinder-technologies.git"
+  },
+  "author": "Rapidmotion134",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rapidmotion134/phinder-technologies/issues"
+  },
+  "homepage": "https://github.com/Rapidmotion134/phinder-technologies#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
