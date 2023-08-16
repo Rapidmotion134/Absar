@@ -8,12 +8,10 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-    <title>Phinder</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Maitree:wght@300;400;500;600;700&family=Poppins:wght@300;400;500&display=swap");
-    </style>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Phinder Technologies</title>
+    <link rel="stylesheet" href="styles.scss" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js" defer></script>
@@ -21,151 +19,319 @@
     <script type="module" src="app.js" defer></script>
   </head>
   <body>
-    <div class="first-page">
-      <nav class="navbar">
-        <div id="nav-logo-section" class="nav-section">
-          <a href="#">
-            <img class="logo" src="assets/logo.png" alt="logo" />
-          </a>
+    <div class="overlay has-fade"></div>
+    <header class="navbar">
+      <nav class="flex container">
+        <a href="#">
+          <img class="logo" src="assets/logo.png" alt="Phinder Technologies">
+        </a>
+        <a id="hamburgerBtn" class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+
+        <div class="header__links">
+          <a href="#" onclick="lenis.scrollTo('#')">Home</a>
+          <a href="#" onclick="lenis.scrollTo('#')">About</a>
+          <a href="#" onclick="lenis.scrollTo('#')">Contact</a>
+          <a href="#" onclick="lenis.scrollTo('#')">Services</a>
+          <a href="#" onclick="lenis.scrollTo('#')">Apps</a>
         </div>
-        <div id="nav-link-section" class="nav-section">
-          <a href="#our-story">OUR STORY</a>
-          <a href="#get-in-touch">GET IN TOUCH</a>
-        </div>
-        <div id="nav-social-section" class="nav-section">
-          <a href="#">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="#">
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-          <a href="#">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-        </div>
-        <div id="nav-contact-section" class="nav-section">
-          <a href="#downloads">
-            <i class="fa-solid fa-download"></i>
-            DOWNLOADS
-          </a>
-        </div>
+
+        <button type="button">Request Meeting</button>
       </nav>
-      <div class="first-page-content">
-        <div id="title">
-          <p class="title">PHINDER</p>
-          <p class="sub-title">A Better Way To Medicine</p>
-        </div>
-        <div class="image-container">
-          <div class="images"></div>
-          <div class="images">
-            <img class="img" src="assets/phinder1.jpg" alt="landing image" />
+
+      <div class="header__menu has-fade">
+        <a href="#" onclick="lenis.scrollTo('#')">Home</a>
+        <a href="#" onclick="lenis.scrollTo('#')">About</a>
+        <a href="#" onclick="lenis.scrollTo('#')">Contact</a>
+        <a href="#" onclick="lenis.scrollTo('#')">Services</a>
+        <a href="#" onclick="lenis.scrollTo('#')">Apps</a>
+      </div>
+    </header>
+
+    <div class="main-content" style="margin-top: 73px; position: relative; z-index: 1">
+      <section class="slideshow">
+        <div class="slideshow-inner">
+          <div class="slides">
+            <div class="slide is-active ">
+              <div class="slide-content">
+                <div class="caption">
+                  <div class="title">Slide title 1</div>
+                  <div class="text">
+                    <p>Slide description 1</p>
+                  </div>
+                  <a href="#" class="btn">
+                    <span class="btn-inner">Learn More</span>
+                  </a>
+                </div>
+              </div>
+              <div class="image-container">
+<!--                <img src="assets/Asset1.png" alt="" class="image first" />-->
+                <div id="image-one" class="image"></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <div class="caption">
+                  <div class="title">Slide title 2</div>
+                  <div class="text">
+                    <p>Slide description 2</p>
+                  </div>
+                  <a href="#" class="btn">
+                    <span class="btn-inner">Learn More</span>
+                  </a>
+                </div>
+              </div>
+              <div class="image-container">
+                <div id="image-two" class="image"></div>
+<!--                <img src="assets/Asset2.png" alt="" class="image second" />-->
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <div class="caption">
+                  <div class="title">Slide title 3</div>
+                  <div class="text">
+                    <p>Slide description 3</p>
+                  </div>
+                  <a href="#" class="btn">
+                    <span class="btn-inner">Learn More</span>
+                  </a>
+                </div>
+              </div>
+              <div class="image-container">
+                <div id="image-three" class="image"></div>
+<!--                <img src="assets/Asset3.png" alt="" class="image third" />-->
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <div class="caption">
+                  <div class="title">Slide title 4</div>
+                  <div class="text">
+                    <p>Slide description 4</p>
+                  </div>
+                  <a href="#" class="btn">
+                    <span class="btn-inner">Learn More</span>
+                  </a>
+                </div>
+              </div>
+              <div class="image-container">
+                <div id="image-four" class="image"></div>
+<!--                <img src="assets/Asset4.png" alt="" class="image fourth" />-->
+              </div>
+            </div>
           </div>
-          <div class="images"></div>
+          <div class="pagination">
+            <div class="item is-active">
+              <span class="icon">1</span>
+            </div>
+            <div class="item">
+              <span class="icon">2</span>
+            </div>
+            <div class="item">
+              <span class="icon">3</span>
+            </div>
+            <div class="item">
+              <span class="icon">4</span>
+            </div>
+          </div>
+          <div class="arrows">
+            <div class="arrow prev">
+          <span class="svg svg-arrow-left">
+            <svg id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="26px"
+                 viewBox="0 0 14 26" xml:space="preserve"> <path d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z"/> </svg>
+            <span class="alt sr-only"></span>
+          </span>
+            </div>
+            <div class="arrow next">
+          <span class="svg svg-arrow-right">
+            <svg id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="26px"
+                 viewBox="0 0 14 26" xml:space="preserve"> <path d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z"/> </svg>
+            <span class="alt sr-only"></span>
+          </span>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
-    <div class="second-page" id="our-story">
-      <div class="second-image-container">
-        <div class="second-images"></div>
-        <div class="second-images">
-          <img class="img" src="assets/phinder2.jpg" alt="landing image" />
-        </div>
-        <div class="second-images"></div>
-      </div>
-      <div id="story">
-        <p id="story-title">Our Story</p>
-        <p class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium consequuntur dolores
-          facilis fugiat, impedit ipsam ipsum laboriosam minus modi nesciunt non obcaecati porro similique
-          totam ullam vel voluptate! Vitae! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-          blanditiis deserunt dicta ducimus esse exercitationem harum nam odit officia officiis perspiciatis
-          quae quaerat quia, quisquam repudiandae unde veritatis vero voluptates. Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit. Cumque, deleniti exercitationem. Distinctio dolore impedit nesciunt
-          officiis omnis perferendis porro praesentium quas ut. Dolore doloribus ducimus excepturi maiores
-          mollitia placeat rem.
+    <div class="section2">
+      <div class="text-section">
+        <p class="entry-text">Navigating the Future</p>
+        <p class="title"><span>Marketing</span>&nbsp;for Everyone</p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis doloribus dolorum enim eveniet,
+          facilis, fuga modi nisi non numquam odio, odit omnis perspiciatis placeat reiciendis repudiandae suscipit?
+          Asperiores, hic.
+          Aliquid deleniti, dicta eligendi exercitationem facere facilis hic illo ipsa itaque iusto magnam minima natus
+          nostrum provident quia quos recusandae.
         </p>
       </div>
-    </div>
-    <div class="third-page">
-      <div id="offer">
-        <p id="offer-title">What We Offer</p>
-        <div class="offer-container">
-          <p class="offers">A Modern Pharmacy Management System</p>
-          <p class="offer-description">
-            A pharmacy management system you can access anytime, anywhere, and on any device.
-          </p>
-        </div>
-        <div class="offer-container">
-          <p class="offers">A Modern Pharmacy Management System</p>
-          <p class="offer-description">
-
-          </p>
-        </div>
-        <div class="offer-container">
-          <p class="offers">A Quick Way to Find the Medicine you Need</p>
-          <p class="offer-description">
-            Search for the medicine you need on our app,
-            and we'll show you the way to the closest store with the medicine you need.
-          </p>
-        </div>
-      </div>
-      <div class="third-image-container">
-        <div class="third-images"></div>
-        <div class="third-images"></div>
-        <div class="third-images">
-          <img class="img" src="assets/phinder3.jpg" alt="landing image" />
-        </div>
+      <div>
+        <img id="section-two__image" src="assets/Asset5.png" alt="random">
       </div>
     </div>
-    <div class="forth-page" id="get-in-touch">
-      <img id="plane" src="assets/paper.png" alt="paper-plane">
-      <div class="forth-image-container">
-        <div class="forth-images"></div>
-        <div class="forth-images">
-          <img class="img" src="assets/phinder4.jpg" alt="landing image" />
+    <section class="services">
+      <p class="entry-text">Providing Great Value</p>
+      <p class="title"><span>Services</span>&nbsp;We Provide</p>
+      <p class="category">Software Development</p>
+      <div class="container">
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/code-solid.svg" alt="">
+            <p>Web Development</p>
+          </div>
         </div>
-        <div class="forth-images"></div>
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/laptop-solid.svg" alt="">
+            <p>Software Development</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/mobile-solid.svg" alt="">
+            <p>App Development</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/logo.png" alt="phinder logo">
+            <p>Phinder</p>
+          </div>
+        </div>
       </div>
-      <div id="contacts">
-        <p id="contact-title">Get In Touch</p>
-        <div class="contact__item">
-          <p class="contact__item-title">
-            Pharmacy Registration
-          </p>
-          <p class="contact__item-detail">
-            +251-939-881-843
-          </p>
+      <p class="category">Marketing</p>
+      <div class="container">
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/share-nodes-solid.svg" alt="">
+            <p>Social Media</p>
+          </div>
         </div>
-        <div class="contact__item">
-          <p class="contact__item-title">
-            Partnership and Social Media Team
-          </p>
-          <p class="contact__item-detail">
-
-          </p>
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/user-solid.svg" alt="">
+            <p>Influencer Marketing</p>
+          </div>
         </div>
-        <div class="contact__item">
-          <p class="contact__item-title">
-            For More Information and Questions
-          </p>
-          <p class="contact__item-detail">
-
-          </p>
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/envelope-solid.svg" alt="">
+            <p>Email Marketing</p>
+          </div>
         </div>
+        <div class="card">
+          <div class="card-content">
+            <img class="icons" src="assets/icons/searchengin.svg" alt="">
+            <p>SEO</p>
+          </div>
+        </div>
+      </div>
+      <p class="category">Copy Writing</p>
+      <div class="container">
+        <div class="card">
+          <div class="card-content">
+            <i class="fa-solid fa-code fa-2xl"></i>
+            <p>Influencer Marketing</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <p>Lorem Ipsum</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <p>Lorem Ipsum</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <p>Lorem Ipsum</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="parallax" class="section3">
+      <div style="width: 75%; text-align: center">
+        <h2 class="parallax-text">
+          We're here to help
+        </h2>
+        <button>Contact Us</button>
       </div>
     </div>
-    <div class="fifth-page" id="downloads">
-      <div class="fifth-page-content">
-        <p id="download-title">Download the App</p>
-        <div class="buttons">
-          <button id="play-store">
-            <i style="color: aliceblue;" class="fa-brands fa-google-play"></i> Play Store
-          </button>
-          <button id="app-store">
-            <i style="color: aliceblue;" class="fa-brands fa-apple"></i> App Store
-          </button>
-        </div>
+    <div style=" width: 80%; margin: 1.5rem auto 5rem">
+      <div>Aliquid atque eveniet minima! Ex, laboriosam, nam? Amet animi assumenda at dicta dolores, eaque error eveniet
+        incidunt inventore itaque natus, officiis perspiciatis quaerat quos repellendus sunt ut voluptas. Dignissimos,
+        fugiat.
+      </div>
+      <div>Accusamus aliquid cum deserunt distinctio dolorem doloribus dolorum eum, expedita facilis fugit impedit nam
+        nemo, nesciunt nihil odio optio perspiciatis quaerat quibusdam recusandae repellendus rerum sunt totam ullam
+        veritatis, voluptatem!
+      </div>
+      <div>A consequuntur numquam soluta ut? Commodi, eveniet, mollitia! Assumenda beatae deserunt dicta eius et, eveniet
+        itaque labore magnam minima nobis similique, tempore totam, ut? Consequatur est iure repudiandae saepe sunt?
+      </div>
+      <div>Accusantium aliquid aspernatur aut, blanditiis deleniti dolores esse est et exercitationem illum incidunt ipsum
+        magni maiores nam odio officiis porro provident quasi qui quis ratione rem, rerum soluta ut voluptatibus?
       </div>
     </div>
+    <footer id="footer">
+      <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(28, 28, 28, 0.7" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(28, 28, 28, 0.5)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(28, 28, 28, 0.3)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(28, 28, 28)" />
+          </g>
+        </svg>
+      </div>
+      <div class="footer-content">
+        <div class="container">
+          <div class="column">
+            <p class="category">Services</p>
+          </div>
+          <div class="column">
+            <p class="category">Navigations</p>
+          </div>
+          <div class="column">
+            <p class="category">Subscribe Today</p>
+            <div class="formContainer">
+              <form action="">
+                <fieldset class="fieldInput">
+                  <label>
+                    <input class="form-input" type="email" placeholder="Email">
+                  </label>
+                  <button type="submit" class="form-submit">
+                    <i class="fa-solid fa-paper-plane fa-xl"></i>
+                  </button>
+                </fieldset>
+              </form>
+            </div>
+            <div class="social_profile">
+              <ul class="list">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/phinder-technologies-plc/mycompany/"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 col-xs-12">
+            <p class="copyright">Copyright © 2023 <a>Phinder Technologies</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

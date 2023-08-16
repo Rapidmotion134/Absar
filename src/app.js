@@ -1,108 +1,332 @@
-gsap.registerPlugin(MotionPathPlugin);
-//Home Page
-const page = document.querySelector(".first-page");
-// const content = document.querySelector(".first-page-content");
-const card1 = document.querySelectorAll(".images")[0];
-const image = document.querySelectorAll(".images")[1];
-const card2 = document.querySelectorAll(".images")[2];
+// Lenis Smooth Scroll
+const lenis = new Lenis();
+
+function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.ticker.add((time)=>{
+    lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0)
+
+//
+const hamburgerBtn = document.querySelector("#hamburgerBtn");
 const navbar = document.querySelector(".navbar");
-const title = document.querySelector("#title");
+const overlay = document.querySelector(".overlay");
+const fadeElements = document.querySelectorAll(".has-fade");
+const body = document.querySelector("body");
 
-gsap.to(card1, { duration: 1, ease: "power2.out", rotation: 10 });
-gsap.to(image, { duration: 1, ease: "power1.inOut", opacity: 1 });
-gsap.to(navbar, { duration: 0.6, ease: "power1.inOut", opacity: 1 });
-gsap.to(title, { duration: 0.6, ease: "power1.inOut", opacity: 0.8 });
-gsap.to(card2, { duration: 1, ease: "power2.out", rotation: -10 });
-// gsap
-//     .timeline({
-//         defaults: {
-//             scrollTrigger: { trigger: page, start: "bottom 75%", end: "bottom 25%", scrub: 0.5 }
-//         }
-//     })
-//     .to(card1, { duration: 1, ease: "power2.out", rotation: 0 })
-//     .to(card2, { duration: 1, ease: "power2.out", rotation: 0 });
+let prevScrollPos = 0; // Initialize the previous scroll position
+const navbarHeight = navbar.offsetHeight; // Get the height of the navbar
+let isHidden = false; // Initialize the hidden state of the navbar
+let scrolledDistance = 0; // Initialize the distance scrolled since the navbar was hidden
 
-//Story Page
-const secondPage = document.querySelector(".second-page");
-const secondCard1 = document.querySelectorAll(".second-images")[0];
-const image2 = document.querySelectorAll(".second-images")[1];
-const secondCard2 = document.querySelectorAll(".second-images")[2];
-const story = document.querySelector("#story").children;
+window.onscroll = function () {
+    const currentScrollPos = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const quarterViewportHeight = viewportHeight / 4;
 
-gsap
-  .timeline({
-    defaults: {
-      scrollTrigger: { trigger: secondPage, start: "top bottom", end: "95% bottom", scrub: 0.5 }
+    if (!body.classList.contains("lock-scroll")) {
+        if (currentScrollPos > prevScrollPos) {
+            // Scrolling down
+            if (!isHidden && currentScrollPos > navbarHeight) {
+                navbar.classList.add("hidden");
+                isHidden = true;
+            }
+        } else {
+            // Scrolling up
+            if (isHidden || currentScrollPos <= navbarHeight) {
+                scrolledDistance += prevScrollPos - currentScrollPos;
+                if (scrolledDistance >= quarterViewportHeight || currentScrollPos <= navbarHeight) {
+                    navbar.classList.remove("hidden");
+                    isHidden = false;
+                    scrolledDistance = 0;
+                }
+            }
+        }
     }
-  })
-  .to(secondCard1, { duration: 1, ease: "power2.out", xPercent: 18, yPercent: -11 })
-  .to(image2, { duration: 1, ease: "power1.inOut", opacity: 1 })
-  .to(secondCard2, { duration: 1, ease: "power2.out", xPercent: -18, yPercent: 11 })
-  // .fromTo(story.children, {opacity: 0, y: 40}, { duration: 1, ease: "power1.inOut", opacity: 1, y: 0, stagger:0.5 });
-  .from(story, {opacity: 0, y: 40, duration: 1, ease: "power1.inOut", stagger:0.5 });
 
-//Offer Page
-const thirdPage = document.querySelector(".third-page");
-const thirdImages = document.querySelectorAll(".third-images");
-const offer = document.querySelector("#offer").children;
+    prevScrollPos = currentScrollPos;
+};
 
-gsap
-    .timeline({
-        defaults: {
-            scrollTrigger: { trigger: thirdPage, start: "top bottom", end: "95% bottom", scrub: 0.5 }
+hamburgerBtn.addEventListener('click', () => {
+    let open = navbar.classList.toggle("open");
+    if (open) {
+        body.classList.add("lock-scroll");
+        fadeElements.forEach((element) => {
+            element.classList.remove("fade-out");
+            element.classList.add("fade-in");
+        });
+    } else {
+        body.classList.remove("lock-scroll");
+        fadeElements.forEach((element) => {
+            element.classList.remove("fade-in");
+            element.classList.add("fade-out");
+        });
+    }
+
+})
+
+// Slider JS
+const slideshowDuration = 4000;
+const slideshow = $('.main-content .slideshow');
+
+function slideshowSwitch(slideshow,index,auto){
+    let activeSlideImageLeft;
+    let newSlideContentRight;
+    let newSlideContentLeft;
+    let newSlideImageToLeft;
+    let newSlideImageToRight;
+    let newSlideImageLeft;
+    let newSlideImageRight;
+    let newSlideLeft;
+    let newSlideRight;
+    if(slideshow.data('wait')) return;
+
+    const slides = slideshow.find('.slide');
+    slideshow.find('.pagination');
+    const activeSlide = slides.filter('.is-active');
+    const activeSlideImage = activeSlide.find('.image-container');
+    const newSlide = slides.eq(index);
+    const newSlideImage = newSlide.find('.image-container');
+    const newSlideContent = newSlide.find('.slide-content');
+    const newSlideElements = newSlide.find('.caption > *');
+    if(newSlide.is(activeSlide))return;
+
+    newSlide.addClass('is-new');
+    let timeout = slideshow.data('timeout');
+    clearTimeout(timeout);
+    slideshow.data('wait',true);
+    const transition = slideshow.attr('data-transition');
+    if(transition === 'fade'){
+        newSlide.css({
+            display:'block',
+            zIndex:2
+        });
+        newSlideImage.css({
+            opacity:0
+        });
+
+        gsap.to(newSlideImage,{
+            duration: 1,
+            alpha:1,
+            onComplete:() => {
+                newSlide.addClass('is-active').removeClass('is-new');
+                activeSlide.removeClass('is-active');
+                newSlide.css({display:'',zIndex:''});
+                newSlideImage.css({opacity:''});
+                slideshow.find('.pagination').trigger('check');
+                slideshow.data('wait',false);
+                if(auto){
+                    timeout = setTimeout(() => {
+                        slideshowNext(slideshow,false,true);
+                    },slideshowDuration);
+                    slideshow.data('timeout',timeout);}}});
+    } else {
+        if(newSlide.index() > activeSlide.index()){
+            newSlideRight = 0;
+            newSlideLeft = 'auto';
+            newSlideImageRight = -slideshow.width() / 8;
+            newSlideImageLeft = 'auto';
+            newSlideImageToRight = 0;
+            newSlideImageToLeft = '';
+            newSlideContentLeft = 'auto';
+            newSlideContentRight = 0;
+            activeSlideImageLeft = -slideshow.width() / 4;
+        } else {
+            newSlideRight = '';
+            newSlideLeft = 0;
+            newSlideImageRight = 'auto';
+            newSlideImageLeft = -slideshow.width()/8;
+            newSlideImageToRight = '';
+            newSlideImageToLeft = 0;
+            newSlideContentLeft = 0;
+            newSlideContentRight = 'auto';
+            activeSlideImageLeft = slideshow.width()/4;
         }
-    })
-    .to(thirdImages, { stagger: 0.65, duration: 1, ease: "power1.inOut", opacity: 1 })
-    // .fromTo(offer,{opacity: 0, y: 40}, { ease: "power1.inOut", opacity: 1, y: 0, stagger: 0.25})
-    .from(offer,{opacity: 0, y: 40, ease: "power1.inOut", stagger: 0.25})
 
-//Contacts Page
-const forthPage = document.querySelector(".forth-page");
-const forthCard1 = document.querySelectorAll(".forth-images")[0];
-const forthCard2 = document.querySelectorAll(".forth-images")[2];
-const image4 = document.querySelectorAll(".forth-images")[1];
-const plane = document.querySelector("#plane");
-const path = document.querySelector("#path");
-const contacts = document.querySelector("#contacts").children;
+        newSlide.css({
+            display:'block',
+            width:0,
+            right:newSlideRight,
+            left:newSlideLeft
+            ,zIndex:2
+        });
 
-gsap.set(plane, {xPercent: -50, yPercent: -50, transformOrigin: "50% 50%", autoAlpha: 1});
-gsap.timeline({
-        defaults: {
-            scrollTrigger: { trigger: forthPage, start: "top bottom", end: "95% bottom" }
+        newSlideImage.css({
+            width:slideshow.width(),
+            right:newSlideImageRight,
+            left:newSlideImageLeft
+        });
+
+        newSlideContent.css({
+            width:slideshow.width(),
+            left:newSlideContentLeft,
+            right:newSlideContentRight
+        });
+
+        activeSlideImage.css({
+            left:0
+        });
+
+        TweenMax.set(newSlideElements,{y:20,force3D:true});
+        TweenMax.to(activeSlideImage,1,{
+            left:activeSlideImageLeft,
+            ease:Power3.easeInOut
+        });
+
+        TweenMax.to(newSlide,1,{
+            width:slideshow.width(),
+            ease:Power3.easeInOut
+        });
+
+        TweenMax.to(newSlideImage,1,{
+            right:newSlideImageToRight,
+            left:newSlideImageToLeft,
+            ease:Power3.easeInOut
+        });
+
+        TweenMax.staggerFromTo(newSlideElements,0.8,{alpha:0,y:60},{alpha:1,y:0,ease:Power3.easeOut,force3D:true,delay:0.6},0.1,function(){
+            newSlide.addClass('is-active').removeClass('is-new');
+            activeSlide.removeClass('is-active');
+            newSlide.css({
+                display:'',
+                width:'',
+                left:'',
+                zIndex:''
+            });
+
+            newSlideImage.css({
+                width:'',
+                right:'',
+                left:''
+            });
+
+            newSlideContent.css({
+                width:'',
+                left:''
+            });
+
+            newSlideElements.css({
+                opacity:'',
+                transform:''
+            });
+
+            activeSlideImage.css({
+                left:''
+            });
+
+            slideshow.find('.pagination').trigger('check');
+            slideshow.data('wait',false);
+            if(auto){
+                timeout=setTimeout(function(){
+                    slideshowNext(slideshow,false,true);
+                },slideshowDuration);
+                slideshow.data('timeout',timeout);
+            }
+        });
+    }
+}
+
+function slideshowNext(slideshow,previous,auto){
+    const slides = slideshow.find('.slide');
+    const activeSlide = slides.filter('.is-active');
+    let newSlide;
+    if(previous){
+        newSlide = activeSlide.prev('.slide');
+        if(newSlide.length === 0) {
+            newSlide = slides.last();
         }
-    })
-    .to(plane, {
-        motionPath: {
-            autoRotate: true,
-            align: "self",
-            path: [
-                {x:400, y: 250}, {x:700, y: 95}, {x:560, y: -105},
-                {x:200, y: 0}, {x:500, y: 200}, {x:window.innerWidth + 300, y: 100 }
-            ],
-        },
-        duration: 3.5,
-        ease: "power1.in"
+    } else {
+        newSlide = activeSlide.next('.slide');
+        if(newSlide.length === 0)
+            newSlide = slides.filter('.slide').first();
+    }
+
+    slideshowSwitch(slideshow, newSlide.index(), auto);
+}
+
+function homeSlideshowParallax(){
+    const scrollTop = $(window).scrollTop();
+    if(scrollTop > windowHeight) return;
+    const inner = slideshow.find('.slideshow-inner');
+    const newHeight = windowHeight - (scrollTop / 2);
+    const newTop = scrollTop * 0.8;
+
+    inner.css({
+        transform:'translateY('+newTop+'px)',height:newHeight
+    });
+}
+
+$(document).ready(function() {
+    $('.slide').addClass('is-loaded');
+
+    $('.slideshow .arrows .arrow').on('click',function(){
+        slideshowNext($(this).closest('.slideshow'),$(this).hasClass('prev'));
     });
 
-gsap.timeline({
-        defaults: {
-            scrollTrigger: { trigger: forthPage, start: "50% bottom", end: "bottom bottom",scrub: 0.5 }
-        }
-    })
-    // .fromTo(contacts, {opacity: 0, y: 40}, { duration: 1, ease: "power1.inOut", opacity: 1, y: 0, stagger: 0.25 })
-    .from(contacts, {opacity: 0, y: 40, duration: 1, ease: "power1.inOut", stagger: 0.25 })
-    .to(forthCard1, { duration: 1, ease: "power2.out", xPercent: 7, yPercent: -10 })
-    .to(image4, { duration: 1, ease: "power1.inOut", opacity: 1 })
-    .to(forthCard2, { duration: 1, ease: "power2.out", xPercent: -7, yPercent: 10 })
+    $('.slideshow .pagination .item').on('click',function(){
+        slideshowSwitch($(this).closest('.slideshow'),$(this).index());
+    });
 
+    $('.slideshow .pagination').on('check',function(){
+        const slideshow = $(this).closest('.slideshow');
+        const pages = $(this).find('.item');
+        const index = slideshow.find('.slides .is-active').index();
+        pages.removeClass('is-active');
+        pages.eq(index).addClass('is-active');
+    });
 
-//Fifth Page
-const download = document.querySelector('.fifth-page-content');
-const fifthPage = document.querySelector('.fifth-page');
+    /* Lazyloading
+    $('.slideshow').each(function(){
+      var slideshow=$(this);
+      var images=slideshow.find('.image').not('.is-loaded');
+      images.on('loaded',function(){
+        var image=$(this);
+        var slide=image.closest('.slide');
+        slide.addClass('is-loaded');
+      });
+    */
 
-gsap.timeline({
-        defaults: {
-            scrollTrigger: { trigger: fifthPage, start: "50% bottom", end: "bottom bottom",scrub: 0.5 }
-        }
-    })
-    .fromTo(download, {opacity: 0, y: 45}, { duration: 1.5, ease: "power1.inOut", opacity: 1, y: 0 });
+    const timeout = setTimeout(function () {
+        slideshowNext(slideshow, false, true);
+    }, slideshowDuration);
+
+    slideshow.data('timeout',timeout);
+});
+
+if(slideshow.length > 1) {
+    $(window).on('scroll',homeSlideshowParallax);
+}
+
+const bg = document.querySelectorAll(".image");
+
+gsap.to(bg, {
+    backgroundPosition: "50% -25%",
+    ease: "none",
+    scrollTrigger: {
+        trigger: bg,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+    }
+});
+
+gsap.to('#parallax', {
+    backgroundPosition: "50% 58%",
+    y: -100,
+    ease: "none",
+    scrollTrigger: {
+        trigger: '#parallax',
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+    }
+});
