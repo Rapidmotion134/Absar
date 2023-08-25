@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Rapidmotion134/phinder-technologies#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
+    "@types/jquery": "^3.5.16",
     "parcel": "^2.9.3"
   }
 }

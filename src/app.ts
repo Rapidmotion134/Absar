@@ -24,7 +24,7 @@ const fadeElements = document.querySelectorAll(".has-fade");
 const body = document.querySelector("body");
 
 let prevScrollPos = 0; // Initialize the previous scroll position
-const navbarHeight = navbar.offsetHeight; // Get the height of the navbar
+const navbarHeight = (<HTMLElement>navbar).offsetHeight; // Get the height of the navbar
 let isHidden = false; // Initialize the hidden state of the navbar
 let scrolledDistance = 0; // Initialize the distance scrolled since the navbar was hidden
 
@@ -238,7 +238,7 @@ function slideshowSwitch(slideshow,index,auto){
     }
 }
 
-function slideshowNext(slideshow,previous,auto){
+function slideshowNext(slideshow, previous, auto){
     const slides = slideshow.find('.slide');
     const activeSlide = slides.filter('.is-active');
     let newSlide;
@@ -257,6 +257,8 @@ function slideshowNext(slideshow,previous,auto){
 }
 
 function homeSlideshowParallax(){
+    console.log('from parallax');
+    const windowHeight = $(window).height();
     const scrollTop = $(window).scrollTop();
     if(scrollTop > windowHeight) return;
     const inner = slideshow.find('.slideshow-inner');
@@ -268,18 +270,18 @@ function homeSlideshowParallax(){
     });
 }
 
-$(document).ready(function() {
+$(function() {
     $('.slide').addClass('is-loaded');
 
-    $('.slideshow .arrows .arrow').on('click',function(){
-        slideshowNext($(this).closest('.slideshow'),$(this).hasClass('prev'));
+    $('.slideshow .arrows .arrow').on('click', function () {
+        slideshowNext($(this).closest('.slideshow'), $(this).hasClass('prev'));
     });
 
-    $('.slideshow .pagination .item').on('click',function(){
-        slideshowSwitch($(this).closest('.slideshow'),$(this).index());
+    $('.slideshow .pagination .item').on('click', function () {
+        slideshowSwitch($(this).closest('.slideshow'), $(this).index());
     });
 
-    $('.slideshow .pagination').on('check',function(){
+    $('.slideshow .pagination').on('check', function () {
         const slideshow = $(this).closest('.slideshow');
         const pages = $(this).find('.item');
         const index = slideshow.find('.slides .is-active').index();
@@ -375,7 +377,7 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", () => {
-    recalcStepActiveMarkerProps();
+    reCalcStepActiveMarkerProps();
 });
 
 timeline?.addEventListener("click", (event) => {
@@ -398,7 +400,7 @@ timeline?.addEventListener("click", (event) => {
     deactivateSteps();
     activateCurrentStep(currentStep);
 
-    recalcStepActiveMarkerProps();
+    reCalcStepActiveMarkerProps();
 
     deactivateSlides();
     activateCurrentSlide();
@@ -448,7 +450,7 @@ function createStepActiveMarker() {
     });
 }
 
-function recalcStepActiveMarkerProps(): void {
+function reCalcStepActiveMarkerProps(): void {
     const stepActiveMarker = timeline?.querySelector(
         `.${DOM.timelineStepActiveMarker}`
     ) as HTMLElement;

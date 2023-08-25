@@ -27,6 +27,7 @@ body, html{
     width: 100%;
     min-height: 100%;
     font-size: 1.125rem;
+    font-weight: 200;
 }
 
 img {
@@ -141,7 +142,7 @@ header button{
     position: fixed;
     inset: 0 0 0 0;
     z-index: 2;
-    background-image: linear-gradient(rgb(28, 28, 28), transparent);
+    background-image: linear-gradient(black, transparent);
 }
 
 .header__menu {
@@ -371,8 +372,9 @@ header button{
         .title {
             margin: 0 auto 15px;
             max-width: 1000px;
-            font: 300 50px/1.2 $titleFont;
-            letter-spacing: 0.35em;
+            font: 300 35px/1.2 $titleFont;
+            font-style: italic;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
         }
 
@@ -446,7 +448,7 @@ header button{
     .arrows {
         .arrow {
             margin: -33px 0 0;
-            padding: 20px;
+            padding: 10px;
             position: absolute;
             top: 50%;
             cursor: pointer;
@@ -454,7 +456,7 @@ header button{
         }
 
         .prev {
-            left: 30px;
+            left: 10px;
 
             &:hover .svg {
                 left: -10px;
@@ -462,7 +464,7 @@ header button{
         }
 
         .next {
-            right: 30px;
+            right: 10px;
 
             &:hover .svg {
                 left: 10px;
@@ -516,7 +518,7 @@ header button{
 
 .title {
     font-family: $titleFont;
-    font-size: 40px;
+    font-size: 38px;
     font-style: italic;
     margin: 0;
     span {
@@ -661,6 +663,18 @@ header button{
         margin: 0 auto;
         font-weight: 600;
     }
+}
+
+#last{
+    display: grid;
+    place-items: start center;
+
+    .text {
+        width: 80%;
+        max-width: 1200px;
+        text-align: center;
+        margin: .5rem auto 5rem;
+    };
 }
 
 .waves {
@@ -947,12 +961,40 @@ header button{
         gap: 3rem;
     }
 
+    .slideshow {
+        .slide {
+            .title {
+                font: 300 50px/1.2 $titleFont;
+                font-style: italic;
+            }
+            .text {
+
+            }
+        }
+
+        .arrows {
+            .arrow {
+                padding: 20px;
+            }
+            .prev {
+                left: 30px;
+            }
+            .next {
+                right: 30px;
+            }
+        }
+    }
+
     .section2 {
         grid-template-columns: 1.75fr 2fr;
 
         #section-two__image {
             margin-top: 0;
         }
+    }
+
+    .title {
+        font-size: 40px;
     }
 
     .services {
@@ -1003,11 +1045,9 @@ header button{
 :root {
     --color-accent-dark: rgb(14, 99, 174);
     --color-secondary: #ccc;
-
     --transition-duration: .2s;
     --transition-timing-function: linear;
     --transition-delay: 0s;
-
     --negative-multiplier: -1;
 }
 
