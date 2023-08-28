@@ -338,14 +338,14 @@ header .button-link{
             }
 
             #image-one {
-                background-image: url("assets/Asset1.png");
+                background-image: url("./assets/Asset1.png");
             }#image-two {
-                background-image: url("assets/Asset2.png");
+                background-image: url("./assets/Asset2.png");
             }#image-three {
-                background-image: url("assets/Asset3.png");
+                background-image: url("./assets/Asset3.png");
                 background-position: 50% 135%;
             }#image-four {
-                background-image: url("assets/Asset4.png");
+                background-image: url("./assets/Asset4.png");
             }
         }
 
@@ -644,7 +644,7 @@ header .button-link{
     background-size: auto;
     background-repeat: no-repeat;
     background-position: 50% 0;
-    background-image: url("assets/h6-parallax-1.png");
+    background-image: url("./assets/h6-parallax-1.png");
     image-rendering: optimizeQuality;
 
     h2 {
