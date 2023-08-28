@@ -257,7 +257,6 @@ function slideshowNext(slideshow, previous, auto){
 }
 
 function homeSlideshowParallax(){
-    console.log('from parallax');
     const windowHeight = $(window).height();
     const scrollTop = $(window).scrollTop();
     if(scrollTop > windowHeight) return;
@@ -587,6 +586,13 @@ gsap.to('#parallax', {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        navbar.classList.remove("open");
+        fadeElements.forEach((element) => {
+            element.classList.remove("fade-in");
+            element.classList.add("fade-out");
+        });
+        navbar.classList.add("hidden");
+        body.classList.remove("lock-scroll");
         if(this.getAttribute('href') !== '#home') {
             lenis.scrollTo(this.getAttribute('href'));
         } else {
