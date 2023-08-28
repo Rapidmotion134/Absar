@@ -582,3 +582,15 @@ gsap.to('#parallax', {
         scrub: true
     }
 });
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        if(this.getAttribute('href') !== '#home') {
+            lenis.scrollTo(this.getAttribute('href'));
+        } else {
+            lenis.scrollTo(0, 0);
+        }
+    });
+});

@@ -97,7 +97,7 @@ html.lenis {
     display: none;
 }
 
-header button{
+header .button-link{
     display: none;
 }
 
@@ -650,18 +650,26 @@ header button{
     h2 {
         font-family: $titleFont;
         font-size: 60px;
-        margin: 20px auto;
+        margin: 20px auto 1.75rem;
     }
 
-    button {
-        padding: .7rem 1.4rem;
+    a {
+        display: inline-block;
+        font-size: 16px;
+        padding: .7em 1.4em;
         background: white;
         border: none;
         cursor: pointer;
         color: black;
-        display: block;
         margin: 0 auto;
-        font-weight: 600;
+        font-weight: 500;
+        transition: transform 300ms ease;
+        border-radius: 3px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
     }
 }
 
@@ -933,8 +941,9 @@ header button{
     }
 
     header {
-        button {
-            padding: .7rem 1.4rem;
+        .button-link {
+            font-size: 15px;
+            padding: .6em 1.2em;
             background: #0E63AE;
             border: none;
             border-radius: 50px;
