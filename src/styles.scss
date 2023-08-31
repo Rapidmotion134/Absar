@@ -450,7 +450,7 @@ header .button-link{
             margin: -33px 0 0;
             padding: 10px;
             position: absolute;
-            top: 50%;
+            top: 52.9%;
             cursor: pointer;
             z-index: 3;
         }
@@ -631,6 +631,12 @@ header .button-link{
     .container {
         position: relative;
         z-index: 3;
+    }
+}
+
+@media (max-width: 370px) {
+    #path-section {
+        height: 670px;
     }
 }
 
@@ -984,6 +990,7 @@ header .button-link{
         .arrows {
             .arrow {
                 padding: 20px;
+                top: 50%;
             }
             .prev {
                 left: 30px;
