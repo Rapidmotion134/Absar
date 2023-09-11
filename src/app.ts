@@ -600,3 +600,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+$(".card").on('click', (e) => {
+    $(e.currentTarget).toggleClass("flip");
+});

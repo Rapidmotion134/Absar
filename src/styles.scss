@@ -537,10 +537,6 @@ header .button-link{
     text-align: center;
     font-family: $titleFont;
 
-    .services-container {
-
-    }
-
     .title{
         display: flex;
         justify-content: center;
@@ -568,7 +564,32 @@ header .button-link{
         border-radius: 1.5rem;
         padding: 1rem;
         box-shadow: none;
-        transition: box-shadow 300ms ease;
+        transition: box-shadow 300ms ease, transform 500ms ease;
+        cursor: pointer;
+        display: inline-block;
+        transform-style: preserve-3d;
+
+        &.flip {
+            transform: rotateY(180deg);
+            transition: transform 500ms;
+            box-shadow: 4px 4px 8px 0 rgb(0 0 0);
+            &::after {
+                left: -1px;
+            }
+        }
+
+        .face {
+            position: absolute;
+            top: 3px; left: 3px;
+            bottom: 3px; right: 3px;
+            backface-visibility: hidden;
+            transform: translateZ(0.1px); // fix for safari.
+        }
+
+        .back {
+            // flip the back
+            transform: rotateY(180deg);
+        }
 
         &:hover {
             box-shadow: 4px 4px 8px 0 rgb(0 0 0);
@@ -589,6 +610,11 @@ header .button-link{
         &:hover::after{
             opacity: 1;
             top: 15%;
+        }
+
+        .more {
+            font-size: 15px;
+            opacity: 0.5;
         }
     }
 
