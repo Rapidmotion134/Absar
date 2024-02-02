@@ -1,7 +1,9 @@
+import Lenis from '@studio-freight/lenis';
+
 // Lenis Smooth Scroll
 const lenis = new Lenis();
 
-function raf(time) {
+function raf(time: any) {
     lenis.raf(time)
     requestAnimationFrame(raf)
 }
@@ -604,3 +606,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 $(".card").on('click', (e) => {
     $(e.currentTarget).toggleClass("flip");
 });
+
+
+const year = new Date().getFullYear();
+document.getElementById('year').innerText = String(year);
