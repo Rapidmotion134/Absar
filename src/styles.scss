@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
 
 $titleFont: 'Raleway', sans-serif;
 $textFont: 'Catamaran', sans-serif;
@@ -16,6 +17,14 @@ $textFont: 'Catamaran', sans-serif;
 
 * {
     box-sizing: border-box;
+    font-family: "Noto Sans Arabic", sans-serif !important;
+    //line-height: 1.75;
+}
+
+:lang(ar) {
+    font-family: "Noto Sans Arabic", sans-serif !important;
+    /* Arabic usually needs 1.6 - 1.8 for optimal readability */
+    line-height: 1.7;
 }
 
 body, html{
@@ -315,7 +324,7 @@ header .button-link{
             background-position: center;
             z-index: 1;
             background-size: cover;
-            image-rendering: optimizeQuality;
+            image-rendering: high-quality;
 
             &::before {
                 content: "";
@@ -493,7 +502,7 @@ header .button-link{
     justify-content: space-between;
 
     .text-section {
-        text-align: left;
+        text-align: start;
 
         p:last-of-type {
             font-weight: 400;
@@ -631,6 +640,13 @@ header .button-link{
         background-size: 1.1rem 1.1rem;
         overflow: hidden;
 
+        div {
+            p {
+                margin: 0;
+            }
+        }
+
+
         .icons {
             width: 50px;
             height: 50px
@@ -645,7 +661,8 @@ header .button-link{
 
 .category {
     position: relative;
-    text-align: left;
+    text-align: start;
+;
     width: 90%;
     margin: 3rem auto 2rem;
     color: rgba(255, 255, 255, 0.9);
@@ -682,7 +699,7 @@ header .button-link{
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-image: url("./assets/h6-parallax-1.png");
-    image-rendering: optimizeQuality;
+    image-rendering: high-quality;
 
     h2 {
         font-family: $titleFont;
@@ -794,7 +811,7 @@ header .button-link{
 
     .navigation {
         list-style: none;
-        text-align: left;
+        text-align: start;
         padding-left: 0;
         width: 100%;
 
@@ -810,7 +827,7 @@ header .button-link{
         li{
             display: flex;
             align-items: center;
-            justify-content: left;
+            justify-content: start;
             gap: 1rem;
             margin: 0 auto .75rem;
 
