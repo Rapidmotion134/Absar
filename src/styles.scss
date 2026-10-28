@@ -672,6 +672,174 @@ header .button-link{
     }
 }
 
+.goals {
+    position: relative;
+    margin: 0 auto;
+    padding: 1.5rem 0 5rem;
+    text-align: center;
+    font-family: $titleFont;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        &::after {
+            @include underline;
+            background-color: rgb(14, 99, 174);
+        }
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 90%;
+        margin: 2.5rem auto 0;
+        padding: 0;
+        gap: 1.25rem;
+    }
+
+    .goal-card {
+        width: 100%;
+        max-width: 320px;
+        text-align: start;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 300ms ease, transform 300ms ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.85;
+        }
+    }
+
+    .goal-number {
+        display: block;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: rgb(14, 99, 174);
+        margin-bottom: .5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .goals {
+        .container {
+            align-items: stretch;
+        }
+
+        .goal-card {
+            width: calc((100% - 2.5rem)/3);
+        }
+    }
+}
+
+// TODO(Absar): styling for the placeholder partner-logo boxes; once real logo images are dropped into
+// ./assets/partners/, swap .partner-logo span for an <img> and this dashed placeholder style can be removed.
+.partners {
+    position: relative;
+    margin: 0 auto;
+    padding: 1.5rem 0 5rem;
+    text-align: center;
+    font-family: $titleFont;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        &::after {
+            @include underline;
+            background-color: rgb(14, 99, 174);
+        }
+    }
+
+    .partners-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 90%;
+        margin: 2.5rem auto 0;
+        gap: 1.25rem;
+    }
+
+    .partner-logo {
+        width: calc((100% - 1.25rem)/2);
+        max-width: 180px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed rgba(0, 0, 0, 0.15);
+        border-radius: .75rem;
+        color: rgba(0, 0, 0, 0.4);
+        font-size: .875rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .partners {
+        .partner-logo {
+            width: calc((100% - 5rem)/6);
+        }
+    }
+}
+
+.clients {
+    position: relative;
+    margin: 0 auto;
+    padding: 2.5rem 0 5rem;
+    background: #1c1c1c;
+    color: white;
+    text-align: center;
+    font-family: $titleFont;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        &::after {
+            @include underline;
+        }
+    }
+
+    .clients-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .75rem;
+        width: 90%;
+        margin: 2.5rem auto 0;
+        padding: 0;
+    }
+
+    .clients-list li {
+        padding: .6rem 1.25rem;
+        border-radius: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: .95rem;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 1.1rem 1.1rem;
+        transition: border-color 300ms ease, color 300ms ease;
+
+        &:hover {
+            border-color: rgb(14, 99, 174);
+            color: rgb(14, 99, 174);
+        }
+    }
+}
+
 #path-section {
     margin: 5.5rem auto 2rem;
     height: 550px;
